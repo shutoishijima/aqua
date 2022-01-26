@@ -28,6 +28,12 @@ class ImgController extends Controller
         $file_img = $request->file('file_img');
         Log::debug($file_img);
 
+
+if ( is_file( $request->file('file_img') ) )
+{
+    $file_img = $request->file('file_img');
+}
+
         // ファイル名(任意) + ファイルの拡張子
         $file_name = time() .'.' .$file_img->getClientOriginalExtension();
         Log::debug($file_name);
