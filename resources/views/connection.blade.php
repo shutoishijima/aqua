@@ -151,25 +151,25 @@
                 @if(empty($users))
                     <p class="red center search-com">該当するユーザーが見つかりません</p>
                 @endif
-                @foreach ($users as $users)
-                    <a href="user/{{$users->user_id}}">
+                @foreach ($users as $user)
+                    <a href="user/{{$user->user_id}}">
                         <div class="mix-list flex flex-between">
                             <div class="mix-img">
-                                @if($users->user_img == null and $users->user_gender == "男")
+                                @if($user->user_img == null and $user->user_gender == "男")
                                     <img src={{ asset('img/men.png') }} alt="プロフィール写真"/>
-                                @elseif($users->user_img == null and $users->user_gender == "女")
+                                @elseif($user->user_img == null and $user->user_gender == "女")
                                     <img src={{ asset('img/women.png') }} alt="プロフィール写真"/>
                                 @else
-                                    <img src={{ asset('storage' .'/img/' .$users[0]->user_img) }} alt="プロフィール写真" />
+                                    <img src={{ asset('storage' .'/img/' .$user->user_img) }} alt="プロフィール写真" />
                                 @endif
                             </div>
                             <div class="mix-middle bold">
                                 <div class="m-m-top flex flex-between">
-                                    <p><span>{{$users->user_name}}</span>（{{$users->user_age}}）</p>
-                                    <p class="mix12"><i class="fas fa-map-marker-alt"></i> {{$users->user_area}}</p>
+                                    <p><span>{{$user->user_name}}</span>（{{$user->user_age}}）</p>
+                                    <p class="mix12"><i class="fas fa-map-marker-alt"></i> {{$user->user_area}}</p>
                                 </div>
                                 <div class="m-m-bottom">
-                                    <p class="mix12">{{$users->user_job}}</p>
+                                    <p class="mix12">{{$user->user_job}}</p>
                                 </div>
                             </div>
                             <div class="mix-right">

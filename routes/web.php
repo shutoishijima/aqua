@@ -77,6 +77,16 @@ Route::get('news/{news_id}', 'NewsController@news_detail')->middleware('user_id_
 
 // カテゴリーページ(組織リーダーシップ)
 Route::get('category/組織・リーダーシップ', 'CategoryController@organization')->middleware('user_id_auth');
+// カテゴリーページ(思考)
+Route::get('category/思考', 'CategoryController@thinking')->middleware('user_id_auth');
+// カテゴリーページ(戦略・マーケティング)
+Route::get('category/戦略・マーケティング', 'CategoryController@marketing')->middleware('user_id_auth');
+// カテゴリーページ(会計・財務)
+Route::get('category/会計・財務', 'CategoryController@finance')->middleware('user_id_auth');
+// カテゴリーページ(キャリア・志)
+Route::get('category/キャリア・志', 'CategoryController@career')->middleware('user_id_auth');
+// カテゴリーページ(変革)
+Route::get('category/変革', 'CategoryController@change')->middleware('user_id_auth');
 
 // カテゴリーページ(詳細)
 Route::get('category/{content_category}/{content_name}', 'CategoryController@category_detail')->middleware('user_id_auth');

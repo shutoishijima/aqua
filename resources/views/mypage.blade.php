@@ -225,34 +225,34 @@
                             <p>組織<br>リーダーシップ</p>
                         </div>
                     </a>
-                    <a href="category/組織・リーダーシップ">
+                    <a href="category/思考">
                         <div class="c-badge2 c-badge3">
-                            <img src={{ asset('img/category1.png') }} alt="組織リーダーシップ"/>
-                            <p>組織<br>リーダーシップ</p>
+                            <img src={{ asset('img/category2.png') }} alt="思考"/>
+                            <p>思考</p>
                         </div>
                     </a>
-                    <a href="category/組織・リーダーシップ">
+                    <a href="category/戦略・マーケティング">
                         <div class="c-badge2 c-badge3">
-                            <img src={{ asset('img/category1.png') }} alt="組織リーダーシップ"/>
-                            <p>組織<br>リーダーシップ</p>
+                            <img src={{ asset('img/category3.png') }} alt="戦略・マーケティング"/>
+                            <p>戦略<br>マーケティング</p>
                         </div>
                     </a>
-                    <a href="category/組織・リーダーシップ">
+                    <a href="category/会計・財務">
                         <div class="c-badge2 c-badge3">
-                            <img src={{ asset('img/category1.png') }} alt="組織リーダーシップ"/>
-                            <p>組織<br>リーダーシップ</p>
+                            <img src={{ asset('img/category4.png') }} alt="会計・財務"/>
+                            <p>会計・財務</p>
                         </div>
                     </a>
-                    <a href="category/組織・リーダーシップ">
+                    <a href="category/キャリア・志">
                         <div class="c-badge2 c-badge3">
-                            <img src={{ asset('img/category1.png') }} alt="組織リーダーシップ"/>
-                            <p>組織<br>リーダーシップ</p>
+                            <img src={{ asset('img/category5.png') }} alt="キャリア・志"/>
+                            <p>キャリア・志</p>
                         </div>
                     </a>
-                    <a href="category/組織・リーダーシップ">
+                    <a href="category/変革">
                         <div class="c-badge2 c-badge3">
-                            <img src={{ asset('img/category1.png') }} alt="組織リーダーシップ"/>
-                            <p>組織<br>リーダーシップ</p>
+                            <img src={{ asset('img/category6.png') }} alt="変革"/>
+                            <p>変革</p>
                         </div>
                     </a>
                 </div>

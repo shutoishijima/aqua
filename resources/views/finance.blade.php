@@ -23,36 +23,36 @@
                 <a href="{{ url('mypage#category') }}" class="header-left-icon">
                     <i class="fas fa-chevron-left"></i>
                 </a>
-                <p class="header-title bold">{{ $organization[0]->content_category }}</p>
+                <p class="header-title bold">{{ $finance[0]->content_category }}</p>
             </div>
 
             <div class="category-amo right bold m-t20 m-b20">
                 <p>受講済み 0 / 
                     @foreach ($amo as $amo)
-                        @if ($amo->content_category == '組織・リーダーシップ')
+                        @if ($amo->content_category == '会計・財務')
                             {{ $amo->cnt }}
                         @endif
                     @endforeach
                 </p>
             </div>
 
-            @foreach ($organization as $organization)
-                <a href="{{$organization->content_category}}/{{$organization->content_name}}" class="c-link">
+            @foreach ($finance as $finance)
+                <a href="{{$finance->content_category}}/{{$finance->content_name}}" class="c-link">
                     <div class="content-box flex m-b10">
                         <div class="c-box-l">
-                            @if ($organization->content_lock == '0')
-                                <img src={{ asset($organization->content_img_path) }} alt="{{ $organization->content_name }}" />
+                            @if ($finance->content_lock == '0')
+                                <img src={{ asset($finance->content_img_path) }} alt="{{ $finance->content_name }}" />
                             @else
-                                <img src={{ asset($organization->content_img_path_lock) }} alt="{{ $organization->content_name }}" />
+                                <img src={{ asset($finance->content_img_path_lock) }} alt="{{ $finance->content_name }}" />
                             @endif
                         </div>
                         <div class="c-box-r">
                             <div class="content-day flex flex-between">
-                                <p>{{Common::get_news_date_format($organization->content_create_at)}}</p>
-                                <p><i class="fas fa-history"></i> 約{{$organization->content_min}}分</p>
+                                <p>{{Common::get_news_date_format($finance->content_create_at)}}</p>
+                                <p><i class="fas fa-history"></i> 約{{ $finance->content_min }}分</p>
                             </div>
                             <div class="content-title bold lh15 m-b10">
-                                <p>{{ $organization->content_name }}</p>
+                                <p>{{ $finance->content_name }}</p>
                             </div>
                             <div class="content-view">
                                 <p class="red">受講済み​<i class="fas fa-check red"></i></p>

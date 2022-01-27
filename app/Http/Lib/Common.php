@@ -403,21 +403,48 @@ class Common
         return DB::select($sql);
     }
     /**
-     * 営業の取得
+     * 思考の取得
      */
-    public function get_sale_contents()
+    public function get_thinking_contents()
     {
         $user_id = self::get_session_user_id();
-        $sql = "select * from contents where content_category = 1;";
+        $sql = "select * from contents where content_category = '思考';";
         return DB::select($sql);
     }
     /**
-     * プログラミングの取得
+     * 戦略・マーケティングの取得
      */
-    public function get_programming_contents()
+    public function get_marketing_contents()
     {
         $user_id = self::get_session_user_id();
-        $sql = "select * from contents where content_category = 2;";
+        $sql = "select * from contents where content_category = '戦略・マーケティング';";
+        return DB::select($sql);
+    }
+    /**
+     * 会計・財務の取得
+     */
+    public function get_finance_contents()
+    {
+        $user_id = self::get_session_user_id();
+        $sql = "select * from contents where content_category = '会計・財務';";
+        return DB::select($sql);
+    }
+    /**
+     * キャリア・志の取得
+     */
+    public function get_career_contents()
+    {
+        $user_id = self::get_session_user_id();
+        $sql = "select * from contents where content_category = 'キャリア・志';";
+        return DB::select($sql);
+    }
+    /**
+     * 変革の取得
+     */
+    public function get_change_contents()
+    {
+        $user_id = self::get_session_user_id();
+        $sql = "select * from contents where content_category = '変革';";
         return DB::select($sql);
     }
 

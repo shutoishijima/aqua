@@ -1081,7 +1081,6 @@ footer {
 }
 .c-badge3 img {
   width: 80px;
-  margin-bottom: 10px;
 }
 .badge3 a {
   flex-basis: 32%;
@@ -1090,9 +1089,6 @@ footer {
 @media screen and (max-width: 550px) {
   .c-badge3 p {
     font-size: 9px;
-  }
-  .c-badge2 img {
-    width: 65.5px;
   }
 }
 /*-------------------------ピックアップ動画-------------------------*/
@@ -1136,8 +1132,8 @@ footer {
   width: 100%;
   max-width: 550px;
   height: calc(100vh - 50px);
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: calc(-100vh + 50px);
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -1148,6 +1144,7 @@ footer {
   width: 100%;
   height: calc(100vh - 50px);
   position: absolute;
+  bottom: 0;
   background: rgba(50, 50, 50, 0.8);
 }
 .modal_nav_content {
