@@ -286,49 +286,25 @@
                 -->
             </div>
 
-            <p class="bold center m-b10">ピックアップ動画</p>
+            <p class="bold center m-b10" id="pickup">ピックアップ動画</p>
 
             <div class="slider">
-                <div class="slider-item">
-                    <img src={{ asset('img/pickup1.jpg') }} alt="ピックアップ"/>
-                    <p class="pickup-day">2021年12月21日（火）</p>
-                    <p class="pickup-ti bold">お金を稼ぐもっとも効率的な方法がコレ！今見ないと絶...</p>
-                    <p class="pickup-tx"><i class="fas fa-history"></i> 約30分</p>
-                </div>
-                <div class="slider-item">
-                    <img src={{ asset('img/pickup1.jpg') }} alt="ピックアップ"/>
-                    <p class="pickup-day">2021年12月21日（火）</p>
-                    <p class="pickup-ti bold">お金を稼ぐもっとも効率的な方法がコレ！今見ないと絶...</p>
-                    <p class="pickup-tx"><i class="fas fa-history"></i> 約30分</p>
-                </div>
-                <div class="slider-item">
-                    <img src={{ asset('img/pickup1.jpg') }} alt="ピックアップ"/>
-                    <p class="pickup-day">2021年12月21日（火）</p>
-                    <p class="pickup-ti bold">お金を稼ぐもっとも効率的な方法がコレ！今見ないと絶...</p>
-                    <p class="pickup-tx"><i class="fas fa-history"></i> 約30分</p>
-                </div>
-                <div class="slider-item">
-                    <img src={{ asset('img/pickup1.jpg') }} alt="ピックアップ"/>
-                    <p class="pickup-day">2021年12月21日（火）</p>
-                    <p class="pickup-ti bold">お金を稼ぐもっとも効率的な方法がコレ！今見ないと絶...</p>
-                    <p class="pickup-tx"><i class="fas fa-history"></i> 約30分</p>
-                </div>
-                <div class="slider-item">
-                    <img src={{ asset('img/pickup1.jpg') }} alt="ピックアップ"/>
-                    <p class="pickup-day">2021年12月21日（火）</p>
-                    <p class="pickup-ti bold">お金を稼ぐもっとも効率的な方法がコレ！今見ないと絶...</p>
-                    <p class="pickup-tx"><i class="fas fa-history"></i> 約30分</p>
-                </div>
-                <div class="slider-item">
-                    <img src={{ asset('img/pickup1.jpg') }} alt="ピックアップ"/>
-                    <p class="pickup-day">2021年12月21日（火）</p>
-                    <p class="pickup-ti bold">お金を稼ぐもっとも効率的な方法がコレ！今見ないと絶...</p>
-                    <p class="pickup-tx"><i class="fas fa-history"></i> 約30分</p>
-                </div>
+                @foreach ($pickup as $pickup)
+                    <div class="slider-item">
+                        <video src={{ asset($pickup->content_path) }} controls></video>
+                        <p class="pickup-day">{{Common::get_news_date_format($pickup->content_create_at)}}</p>
+                        <p class="pickup-ti bold">
+                            <?php
+                                echo mb_strimwidth( $pickup->content_detail, 0, 57, '...', 'UTF-8' )
+                            ?>
+                        </p>
+                        <p class="pickup-tx"><i class="fas fa-history"></i> 約{{$pickup->content_min}}分</p>
+                    </div>
+                @endforeach
             </div>
 
             <div class="login-back center m-t-30">
-                <a href="{{ url('') }}">
+                <a href="{{ url('pickup') }}">
                     全てをみる
                     <i class="fas fa-chevron-right"></i>
                 </a>

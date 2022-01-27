@@ -109,9 +109,31 @@
             @endif
 
             <div class="back2 center m-t40">
-                <a href="{{ url('category/組織・リーダーシップ') }}">
-                    <i class="fas fa-arrow-left"></i>動画一覧へもどる
-                </a>
+                @if ($content[0]->content_category == '組織・リーダーシップ')
+                    <a href="{{ url('category/組織・リーダーシップ') }}">
+                        <i class="fas fa-arrow-left"></i>動画一覧へもどる
+                    </a>
+                @elseif ($content[0]->content_category == '思考')
+                    <a href="{{ url('category/思考') }}">
+                        <i class="fas fa-arrow-left"></i>動画一覧へもどる
+                    </a>
+                @elseif ($content[0]->content_category == '戦略・マーケティング')
+                    <a href="{{ url('category/戦略・マーケティング') }}">
+                        <i class="fas fa-arrow-left"></i>動画一覧へもどる
+                    </a>
+                @elseif ($content[0]->content_category == '会計・財務')
+                    <a href="{{ url('category/会計・財務') }}">
+                        <i class="fas fa-arrow-left"></i>動画一覧へもどる
+                    </a>
+                @elseif ($content[0]->content_category == 'キャリア・志')
+                    <a href="{{ url('category/キャリア・志') }}">
+                        <i class="fas fa-arrow-left"></i>動画一覧へもどる
+                    </a>
+                @elseif ($content[0]->content_category == '変革')
+                    <a href="{{ url('category/変革') }}">
+                        <i class="fas fa-arrow-left"></i>動画一覧へもどる
+                    </a>
+                @endif
             </div>
 
             <div class="pay-button">

@@ -27,14 +27,8 @@ class ImgController extends Controller
         // アップロードされたファイルを取得
         $file_img = $request->file('file_img');
 
-        // 画像回転防止、拡張子をjpg
-        $file_img = Image::make($file_img)->encode('jpg')->orientate()->save();
-
         // Imageオブジェクトへ変換
-        $image = Image::make($file_img);
-
-        // EXIFのOrientationによって回転させる
-        $image->orientate();
+        $image = Image::make($file_img)->encode('jpg')->orientate()->save();
 
         Log::debug($image);
 

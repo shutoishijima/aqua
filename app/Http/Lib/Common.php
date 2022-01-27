@@ -470,4 +470,21 @@ class Common
         $sql = "select * from contents where content_category = '$content_category' and content_create_at > '$conversion';";
         return DB::select($sql);
     }
+
+    /**
+     * マイページのピックアップコンテンツ取得(6件)
+     */
+    public function get_pickup()
+    {
+        $sql = "select * from contents where content_category = 'ピックアップ' order by content_create_at desc limit 6;";
+        return DB::select($sql);
+    }
+    /**
+     * マイページのピックアップコンテンツ取得(全件)
+     */
+    public function get_all_pickup()
+    {
+        $sql = "select * from contents where content_category = 'ピックアップ' order by content_create_at desc;";
+        return DB::select($sql);
+    }
 }

@@ -91,11 +91,5 @@ Route::get('category/変革', 'CategoryController@change')->middleware('user_id_
 // カテゴリーページ(詳細)
 Route::get('category/{content_category}/{content_name}', 'CategoryController@category_detail')->middleware('user_id_auth');
 
-
-
-// コンテンツ一覧ページ
-Route::get('contents', 'ContentsController@index')->middleware('user_id_auth');
-// 営業コンテンツページ
-Route::get('contents/sales', 'ContentsController@sales')->middleware('user_id_auth');
-// プログラミングコンテンツページ
-Route::get('contents/programming', 'ContentsController@programming')->middleware('user_id_auth');
+// ピックアップコンテンツ一覧ページ
+Route::get('pickup', 'ContentsController@index')->middleware('user_id_auth');

@@ -15,6 +15,7 @@ class MypageController extends Controller
         $output["users"] = $common->get_user_info(Common::get_session_user_id());
         $output['file_path'] = '';
         $output["news"] = $common->get_all_news();
+        $output["pickup"] = $common->get_pickup();
 
         $data = $request->session()->all();
         //dd($data);

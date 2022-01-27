@@ -68,7 +68,7 @@
             <p class="m-t40 m-b40 center"><a href="#">ページの先頭へ</a></p>
 
             <div class="back2 center">
-                <a href="mypage">
+                <a href="{{ url('mypage') }}">
                     <i class="fas fa-arrow-left"></i>マイページへ戻る
                 </a>
             </div>

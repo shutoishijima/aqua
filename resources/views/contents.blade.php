@@ -8,90 +8,58 @@
         <title>Laravel</title>
 
         <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="https://use.typekit.net/dxj2hcp.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+        <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         
     </head>
     <body class="main">
-    @component('parts.header')
-    @endcomponent
-
-        <div class="contents-page">
-            <div class="content-box flex">
-                <div class="c-box-l">
-                    <a href="contents/sales">
-                        <img src={{ asset($sales[0]->content_img_path) }} alt="営業力講義" />
-                    </a>
-                </div>
-                <div class="c-box-r">
-                    <a href="contents/sales">
-                        <div class="content-title">
-                            <p>営業　全 {{ $contents[0]->cnt }}動画</p>
-                        </div>
-                        <div class="content-text">
-                            <p>クロージング特化の営業トークには共通のポイントが！構成に当てはめるだけであなたもトップ営業マンに！​</p>
-                        </div>
-                    </a>
-                </div>
+        <div class="contents-page contents-detail-page">
+            @component('parts.hamburger2')
+            @endcomponent
+            <div class="header header2">
+                <a href="{{ url('mypage#pickup') }}" class="header-left-icon">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <p class="header-title bold">ピックアップ動画</p>
             </div>
 
-            <div class="content-box flex">
-                <div class="c-box-l">
-                    <a href="contents/programming">
-                        <img src={{ asset($programming[0]->content_img_path) }} alt="プログラミング講義" />
-                    </a>
-                </div>
-                <div class="c-box-r">
-                    <a href="contents/programming">
-                        <div class="content-title">
-                            <p>プログラミング　全 {{ $contents[1]->cnt }}動画</p>
+            <div class="pickup-margin">
+                @foreach ($pickup as $pickup)
+                    <div class="content-detail">
+                        <div class="c-d-t">
+                            <video src={{ asset($pickup->content_path) }} controls></video>
                         </div>
-                        <div class="content-text">
-                            <p>自分の作りたいを形に。頭で作れるものは必ず作れるのだから。そもそもプログラミングとは何かもわからない初心者からでも始められる！​​</p>
+                        <div class="c-d-b">
+                            <div class="content-day flex flex-between">
+                                <p class="bold">{{Common::get_news_date_format($pickup->content_create_at)}}</p>
+                                <p><i class="fas fa-history"></i> 約{{ $pickup->content_min}}分</p>
+                            </div>
+                            <div class="bold lh15">
+                                <p>{{ $pickup->content_name }}</p>
+                            </div>
+                            <div class="content-text">
+                                <p>{{ $pickup->content_detail }}</p>
+                            </div>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                @endforeach
             </div>
 
-            <div class="content-box flex">
-                <div class="c-box-l">
-                    <a href="contents/sales">
-                        <img src={{ asset($sales[0]->content_img_path) }} alt="営業力講義" />
-                    </a>
-                </div>
-                <div class="c-box-r">
-                    <a href="contents/sales">
-                        <div class="content-title">
-                            <p>営業　全 {{ $contents[0]->cnt }}動画</p>
-                        </div>
-                        <div class="content-text">
-                            <p>クロージング特化の営業トークには共通のポイントが！構成に当てはめるだけであなたもトップ営業マンに！​</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="content-box flex">
-                <div class="c-box-l">
-                    <a href="contents/programming">
-                        <img src={{ asset($programming[0]->content_img_path) }} alt="プログラミング講義" />
-                    </a>
-                </div>
-                <div class="c-box-r">
-                    <a href="contents/programming">
-                        <div class="content-title">
-                            <p>プログラミング　全 {{ $contents[1]->cnt }}動画</p>
-                        </div>
-                        <div class="content-text">
-                            <p>自分の作りたいを形に。頭で作れるものは必ず作れるのだから。そもそもプログラミングとは何かもわからない初心者からでも始められる！​​</p>
-                        </div>
-                    </a>
-                </div>
+            <div class="back2 center m-t40">
+                <a href="{{ url('mypage') }}">
+                    <i class="fas fa-arrow-left"></i>マイページへもどる
+                </a>
             </div>
         </div>
         
+        @component('parts.footer')
+        @endcomponent
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src={{ asset('js/slick.min.js') }}></script>
         <script type="text/javascript" src={{ asset('js/main.js') }}></script>
     </body>
 </html>

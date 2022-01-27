@@ -5,7 +5,7 @@
             <p>繋がる</p>
         </div>
     </a>
-    <a href="">
+    <a href="{{ url('pickup') }}">
         <div class="nav-list">
             <img src={{ asset('img/nav2.png') }} alt="観る"/>
             <p>観る</p>
