@@ -51,7 +51,7 @@
             <div class="content-detail">
                 <div class="c-d-t">
                     @if ($content[0]->content_lock == '0')
-                        <video src={{ asset($content[0]->content_path) }} controls></video>
+                        <video src={{ asset($content[0]->content_path) }} id="view" controls></video>
                     @else
                         <img src={{ asset($content[0]->content_img_path_lock) }} alt="{{ $content[0]->content_name }}" />
                     @endif
@@ -69,6 +69,54 @@
                     </div>
                 </div>
             </div>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+            <script>
+                $(function() {
+                    $(".c-d-t video").on('ended', function(e) {
+
+                        // 記載しなければ別のURLに誘導される
+                        e.preventDefault();
+
+                        // 要素を取得
+                        let element = document.getElementById( "view" ) ;
+
+                        // endedを取得
+                        let returnValue = element.ended ;
+
+                        // 送信用データ設定(FormData)じゃないとダメ
+                        var sendData = new FormData();
+                        sendData.append('view', returnValue);
+                        console.log(sendData);
+
+                        // ajaxセットアップ
+                        $.ajaxSetup({
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                        });
+
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ url('viewed_video') }}",
+                            dataType: 'json',
+                            data: sendData,
+                            // ajaxで画像送信に必要
+                            cache:false,
+                            processData : false,
+                            contentType : false,
+
+                        // 接続が出来た場合の処理
+                        }).done(function(sendData) {
+                            console.log(sendData);
+
+                        // ajax接続が出来なかった場合の処理
+                        }).fail(function(jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        });
+                    });
+                });
+            </script>
 
             <div class="next-title bold">
                 <p class="white">次の動画はこちら</p>

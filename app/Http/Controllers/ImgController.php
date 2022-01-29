@@ -30,7 +30,7 @@ class ImgController extends Controller
         // Imageオブジェクトへ変換
         $image = Image::make($file_img)->encode('jpg')->orientate()->save();
 
-        Log::debug($image);
+        // Log::debug($image);
 
         // ファイル名(任意) + ファイルの拡張子
         $file_name = time() .'.jpg';

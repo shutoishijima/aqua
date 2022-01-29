@@ -79,42 +79,30 @@
                             <img src={{ asset('storage' .'/img/' .$users[0]->user_img) }} alt="プロフィール写真" />
                         @endif
 
-                        <div class="badge flex align-center flex-between">
+                        <div class="badge flex flex-between">
                             <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
+                                <img src={{ asset('img/badge.png') }} alt="組織・リーダーシップ"/>
                                 <p>組織<br>リーダーシップ</p>
                             </div>
                             <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
+                                <img src={{ asset('img/badge.png') }} alt="思考"/>
+                                <p class="m-t10">思考</p>
                             </div>
                             <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
+                                <img src={{ asset('img/badge.png') }} alt="戦略・マーケティング"/>
+                                <p>戦略<br>マーケティング</p>
                             </div>
                             <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
+                                <img src={{ asset('img/badge.png') }} alt="会計・財務"/>
+                                <p>会計・財務</p>
                             </div>
                             <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
+                                <img src={{ asset('img/badge.png') }} alt="キャリア・志"/>
+                                <p>キャリア・志</p>
                             </div>
                             <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
-                            </div>
-                            <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
-                            </div>
-                            <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
-                            </div>
-                            <div class="c-badge">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
+                                <img src={{ asset('img/badge.png') }} alt="変革"/>
+                                <p>変革</p>
                             </div>
                         </div>
 
@@ -149,47 +137,35 @@
             <div class="mycourse p-t40 p-b40 m-b40">
                 <p class="bold center m-b20">完了コース一覧</p>
 
-                <div class="badge2 flex align-center flex-between">
+                <div class="badge2 flex flex-between">
                     <div class="c-badge2">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
+                        <img src={{ asset('img/badge.png') }} alt="組織・リーダーシップ"/>
                         <p>組織<br>リーダーシップ</p>
                     </div>
                     <div class="c-badge2">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
+                        <img src={{ asset('img/badge.png') }} alt="思考"/>
+                        <p class="m-t10">思考</p>
                     </div>
                     <div class="c-badge2">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
+                        <img src={{ asset('img/badge.png') }} alt="戦略・マーケティング"/>
+                        <p>戦略<br>マーケティング</p>
                     </div>
                 </div>
 
                 <div class="right">
                     <div class="center">
-                        <div class="badge2 flex align-center flex-between">
+                        <div class="badge2 flex flex-between">
                             <div class="c-badge2">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
+                                <img src={{ asset('img/badge.png') }} alt="会計・財務"/>
+                                <p>会計・財務</p>
                             </div>
                             <div class="c-badge2">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
+                                <img src={{ asset('img/badge.png') }} alt="キャリア・志"/>
+                                <p>キャリア・志</p>
                             </div>
                             <div class="c-badge2">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
-                            </div>
-                            <div class="c-badge2">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
-                            </div>
-                            <div class="c-badge2">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
-                            </div>
-                            <div class="c-badge2">
-                                <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                                <p>組織<br>リーダーシップ</p>
+                                <img src={{ asset('img/badge.png') }} alt="変革"/>
+                                <p>変革</p>
                             </div>
                         </div>
                     </div>
@@ -218,17 +194,17 @@
             <div class="mycourse p-t40 p-b40 m-b40" id="category">
                 <p class="bold center m-b20">カテゴリ</p>
 
-                <div class="badge2 badge3 flex align-center flex-between">
+                <div class="badge2 badge3 flex flex-between">
                     <a href="category/組織・リーダーシップ">
                         <div class="c-badge2 c-badge3">
-                            <img src={{ asset('img/category1.png') }} alt="組織リーダーシップ"/>
+                            <img src={{ asset('img/category1.png') }} alt="組織・リーダーシップ"/>
                             <p>組織<br>リーダーシップ</p>
                         </div>
                     </a>
                     <a href="category/思考">
                         <div class="c-badge2 c-badge3">
                             <img src={{ asset('img/category2.png') }} alt="思考"/>
-                            <p>思考</p>
+                            <p class="m-t10">思考</p>
                         </div>
                     </a>
                     <a href="category/戦略・マーケティング">

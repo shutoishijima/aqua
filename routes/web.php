@@ -93,3 +93,6 @@ Route::get('category/{content_category}/{content_name}', 'CategoryController@cat
 
 // ピックアップコンテンツ一覧ページ
 Route::get('pickup', 'ContentsController@index')->middleware('user_id_auth');
+
+// 動画視聴(ajax送信)
+Route::post('viewed_video', 'VideoController@viewed_video');

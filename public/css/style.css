@@ -198,6 +198,9 @@ li {
 .top * {
   color: #ffffff;
 }
+.top option {
+  color: #000000;
+}
 .top-logo {
   width: 50%;
   max-width: 120px;

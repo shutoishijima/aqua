@@ -44,6 +44,13 @@
                     </div>
                 @endif
             </div>
+
+            <div class="login-back2 center m-t30">
+                <a href="{{ url('') }}">
+                    TOPに戻る
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
         </div>
 
         @component('parts.footer')
