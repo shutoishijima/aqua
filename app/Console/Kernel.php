@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //コマンド登録
         Commands\ChatDeleteCommand::Class,
+        Commands\StudyMinDeleteCommand::Class,
         Commands\ScrapingCommand::class,
         Commands\ScrapingSearchCommand::class,
     ];
@@ -30,8 +31,11 @@ class Kernel extends ConsoleKernel
         // 時刻を指定する場合（この例は、毎日朝3時に実行）
         // $schedule->command('command:chatdelete')->dailyAt('3:00');
 
-        // 1分ごと
+        // 1年ごと
         $schedule->command('command:chatdelete')->yearly();
+
+        // 毎月ごと
+        $schedule->command('command:studymindelete')->monthly();
     }
 
     /**

@@ -112,6 +112,13 @@ class RegisterController extends Controller
         $users = DB::select("select * from users where user_name = '$outPut[name]' and user_pass = '$outPut[pass]' and user_mail = '$outPut[user_mail]'");
         $user_id = $users[0]->user_id;
 
+        $default_viewing = DB::select("select * from contents group by content_category;");
+        foreach($default_viewing as $default_viewing) {
+            if($default_viewing->content_category != 'ピックアップ'){
+                DB::insert("insert into viewing_histories (user_id, content_id, content_status) values('$user_id', '$default_viewing->content_id', '0')");
+            }
+        }
+
         // セッションを空にする
         $request->session()->forget("form_output");
 

@@ -389,7 +389,7 @@ class Common
     public function get_contents_amount()
     {
         $user_id = self::get_session_user_id();
-        $sql = "select content_category, count( content_category ) as cnt from contents group by content_category;";
+        $sql = "select content_category, count( content_category ) as cnt from contents group by content_category order by content_id;";
         return DB::select($sql);
     }
 
@@ -484,7 +484,100 @@ class Common
      */
     public function get_all_pickup()
     {
-        $sql = "select * from contents where content_category = 'ピックアップ' order by content_create_at desc;";
+        $sql = "select * from contents where content_category = 'ピックアップ' order by content_create_at desc";
+        return DB::select($sql);
+    }
+
+    /**
+     * 最新の視聴履歴の情報
+     */
+    public function get_viewing_history_latest($user_id, $content_category)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = '$content_category')
+            and user_id = '$user_id'
+            order by content_id desc limit 1 ";
+        return DB::select($sql);
+    }
+
+    /**
+     * 受講済み判断情報
+     */
+    public function get_viewed_history($user_id, $content_category)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = '$content_category')
+            and user_id = '$user_id'";
+        return DB::select($sql);
+    }
+    /**
+     * 受講済み数判断情報
+     */
+    public function get_viewed_count($user_id, $content_category)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = '$content_category')
+            and user_id = '$user_id' and content_status = 2";
+        return DB::select($sql);
+    }
+    /**
+     * 受講済み数判断情報(組織・リーダーシップ)
+     */
+    public function get_c1_viewed_count($user_id)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = '組織・リーダーシップ')
+            and user_id = '$user_id' and content_status = 2";
+        return DB::select($sql);
+    }
+    /**
+     * 受講済み数判断情報(思考)
+     */
+    public function get_c2_viewed_count($user_id)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = '思考')
+            and user_id = '$user_id' and content_status = 2";
+        return DB::select($sql);
+    }
+    /**
+     * 受講済み数判断情報(戦略・マーケティング)
+     */
+    public function get_c3_viewed_count($user_id)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = '戦略・マーケティング')
+            and user_id = '$user_id' and content_status = 2";
+        return DB::select($sql);
+    }
+    /**
+     * 受講済み数判断情報(会計・財務)
+     */
+    public function get_c4_viewed_count($user_id)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = '会計・財務')
+            and user_id = '$user_id' and content_status = 2";
+        return DB::select($sql);
+    }
+    /**
+     * 受講済み数判断情報(キャリア・志)
+     */
+    public function get_c5_viewed_count($user_id)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = 'キャリア・志')
+            and user_id = '$user_id' and content_status = 2";
+        return DB::select($sql);
+    }
+    /**
+     * 受講済み数判断情報(変革)
+     */
+    public function get_c6_viewed_count($user_id)
+    {
+        $sql = "select * from viewing_histories where content_id in(
+            select content_id from contents where content_category = '変革')
+            and user_id = '$user_id' and content_status = 2";
         return DB::select($sql);
     }
 }

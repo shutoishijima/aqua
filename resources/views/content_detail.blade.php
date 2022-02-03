@@ -45,13 +45,44 @@
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 @endif
-                <p class="header-title bold">{{ $content[0]->content_name}}</p>
+                <p class="header-title bold">{{$content[0]->content_name}}</p>
             </div>
 
             <div class="content-detail">
                 <div class="c-d-t">
-                    @if ($content[0]->content_lock == '0')
-                        <video src={{ asset($content[0]->content_path) }} id="view" controls></video>
+                    @php
+                        $video_flag = false;
+
+                        // 無料コンテンツは視聴可能
+                        if ($content[0]->content_lock == '0'){
+                            $video_flag = true;
+
+                        // 有料コンテンツかつ有料会員
+                        } elseif ($content[0]->content_lock == '1' && $users[0]->user_status == '1'){
+                            $video_flag = true;
+                        }
+
+                        // 最新の視聴コンテンツより一つ以上先は見れない
+                        if ($latest_content[0]->content_id + 1 < $content[0]->content_id) {
+                            $video_flag = false;
+                        }
+
+                        if ($latest_content[0]->content_id < $content[0]->content_id) {
+                            // 最新の視聴コンテンツが視聴中だとその先が見れない
+                            if ($latest_content[0]->content_status == '1'){
+                                $video_flag = false;
+                            }
+
+                            // 最新の視聴コンテンツを見た日から１日以上経っているか
+                            $limit_day = date('Y-m-d H:i:s', strtotime('-1 day'));
+                            if ($latest_content[0]->view_date >= $limit_day){
+                                $video_flag = false;
+                            }
+                        }
+                    @endphp
+
+                    @if ($video_flag == true)
+                        <video src={{ asset($content[0]->content_path) }} controls></video>
                     @else
                         <img src={{ asset($content[0]->content_img_path_lock) }} alt="{{ $content[0]->content_name }}" />
                     @endif
@@ -70,6 +101,10 @@
                 </div>
             </div>
 
+            <div>
+                <input type="hidden" id="content_id" value="{{$content[0]->content_id}}">
+            </div>
+
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <script>
                 $(function() {
@@ -78,15 +113,15 @@
                         // 記載しなければ別のURLに誘導される
                         e.preventDefault();
 
-                        // 要素を取得
-                        let element = document.getElementById( "view" ) ;
+                        console.log('ended');
 
-                        // endedを取得
-                        let returnValue = element.ended ;
+                        // コンテンツIDを取得
+                        let content_id = $('#content_id').val();
 
                         // 送信用データ設定(FormData)じゃないとダメ
-                        var sendData = new FormData();
-                        sendData.append('view', returnValue);
+                        let sendData = new FormData();
+                        sendData.append('content_id', content_id);
+                        sendData.append('content_status', '2');
                         console.log(sendData);
 
                         // ajaxセットアップ
@@ -99,10 +134,50 @@
                             url: "{{ url('viewed_video') }}",
                             dataType: 'json',
                             data: sendData,
-                            // ajaxで画像送信に必要
-                            cache:false,
-                            processData : false,
-                            contentType : false,
+                            cache: false,
+                            processData: false,
+                            contentType: false,
+
+                        // 接続が出来た場合の処理
+                        }).done(function(sendData) {
+                            console.log(sendData);
+
+                        // ajax接続が出来なかった場合の処理
+                        }).fail(function(jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        });
+                    });
+
+                    $(".c-d-t video").on('playing', function(e) {
+                        // 記載しなければ別のURLに誘導される
+                        e.preventDefault();
+
+                        console.log('playing');
+
+                        // コンテンツIDを取得
+                        let content_id = $('#content_id').val();
+
+                        // 送信用データ設定(FormData)じゃないとダメ
+                        let sendData = new FormData();
+                        sendData.append('content_id', content_id);
+                        sendData.append('content_status', '1');
+                        console.log(sendData);
+
+                        // ajaxセットアップ
+                        $.ajaxSetup({
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                        });
+
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ url('viewed_video') }}",
+                            dataType: 'json',
+                            data: sendData,
+                            cache: false,
+                            processData: false,
+                            contentType: false,
 
                         // 接続が出来た場合の処理
                         }).done(function(sendData) {
@@ -126,7 +201,38 @@
                 <a href='{{ url("category/$content_category/$next_content->content_name") }}' class="c-link">
                     <div class="content-box flex">
                         <div class="c-box-l">
-                            @if ($next_content->content_lock == '0')
+                            @php
+                                $video_img_flag = false;
+
+                                // 無料コンテンツは視聴可能
+                                if ($next_content->content_lock == '0'){
+                                    $video_img_flag = true;
+
+                                // 有料コンテンツかつ有料会員
+                                } elseif ($next_content->content_lock == '1' && $users[0]->user_status == '1'){
+                                    $video_img_flag = true;
+                                }
+
+                                // 最新の視聴コンテンツより一つ以上先は見れない
+                                if ($latest_content[0]->content_id + 1 < $next_content->content_id) {
+                                    $video_img_flag = false;
+                                }
+
+                                if ($latest_content[0]->content_id < $next_content->content_id) {
+                                    // 最新の視聴コンテンツが視聴中だとその先が見れない
+                                    if ($latest_content[0]->content_status == '1'){
+                                        $video_img_flag = false;
+                                    }
+
+                                    // 最新の視聴コンテンツを見た日から１日以上経っているか
+                                    $limit_day = date('Y-m-d H:i:s', strtotime('-1 day'));
+                                    if ($latest_content[0]->view_date >= $limit_day){
+                                        $video_img_flag = false;
+                                    }
+                                }
+                            @endphp
+
+                            @if ($video_img_flag == true)
                                 <img src={{ asset($next_content->content_img_path) }} alt="{{ $next_content->content_name }}" />
                             @else
                                 <img src={{ asset($next_content->content_img_path_lock) }} alt="{{ $next_content->content_name }}" />

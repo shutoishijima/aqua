@@ -27,7 +27,7 @@
             </div>
 
             <div class="category-amo right bold m-t20 m-b20">
-                <p>受講済み 0 / 
+                <p>受講済み {{count($viewed_count)}} / 
                     @foreach ($amo as $amo)
                         @if ($amo->content_category == '組織・リーダーシップ')
                             {{ $amo->cnt }}
@@ -40,7 +40,38 @@
                 <a href="{{$organization->content_category}}/{{$organization->content_name}}" class="c-link">
                     <div class="content-box flex m-b10">
                         <div class="c-box-l">
-                            @if ($organization->content_lock == '0')
+                            @php
+                                $video_flag = false;
+
+                                // 無料コンテンツは視聴可能
+                                if ($organization->content_lock == '0'){
+                                    $video_flag = true;
+
+                                // 有料コンテンツかつ有料会員
+                                } elseif ($organization->content_lock == '1' && $users[0]->user_status == '1'){
+                                    $video_flag = true;
+                                }
+
+                                // 最新の視聴コンテンツより一つ以上先は見れない
+                                if ($latest_content[0]->content_id + 1 < $organization->content_id) {
+                                    $video_flag = false;
+                                }
+
+                                if ($latest_content[0]->content_id < $organization->content_id) {
+                                    // 最新の視聴コンテンツが視聴中だとその先が見れない
+                                    if ($latest_content[0]->content_status == '1'){
+                                        $video_flag = false;
+                                    }
+
+                                    // 最新の視聴コンテンツを見た日から１日以上経っているか
+                                    $limit_day = date('Y-m-d H:i:s', strtotime('-1 day'));
+                                    if ($latest_content[0]->view_date >= $limit_day){
+                                        $video_flag = false;
+                                    }
+                                }
+                            @endphp
+
+                            @if ($video_flag == true)
                                 <img src={{ asset($organization->content_img_path) }} alt="{{ $organization->content_name }}" />
                             @else
                                 <img src={{ asset($organization->content_img_path_lock) }} alt="{{ $organization->content_name }}" />
@@ -55,7 +86,45 @@
                                 <p>{{ $organization->content_name }}</p>
                             </div>
                             <div class="content-view">
-                                <p class="red">受講済み​<i class="fas fa-check red"></i></p>
+                                @foreach ($viewed_content as $view_content)
+                                    @if ($organization->content_id == $view_content->content_id && $view_content->content_status == 2)
+                                        <p class="red">受講済み​<i class="fas fa-check red"></i></p>
+                                    @endif
+                                @endforeach
+
+                                @if ($latest_content[0]->content_id + 1 == $organization->content_id && $latest_content[0]->content_status == 2)
+                                    @if ($latest_content[0]->content_id < $organization->content_id && $users[0]->user_status == '0' && $organization->content_lock == 1)
+                                        <p class="red">有料会員しか視聴できません</p>
+                                    @else
+                                        @php
+                                            // 現在時刻
+                                            $timestamp = strtotime('now');
+
+                                            // DBの時刻
+                                            $timestamp2 = strtotime($latest_content[0]->view_date);
+
+                                            // 差(秒)
+                                            $time_diff = $timestamp - $timestamp2;
+
+                                            // 差(時間) 3600秒で割る
+                                            $hour_diff = $time_diff / 60 / 60;
+                                        @endphp
+
+                                        @if (round((24 - $hour_diff), 1) > 0)
+                                            <p class="red">あと
+                                                @php
+                                                    echo(round((24 - $hour_diff), 1));
+                                                @endphp
+                                            時間後に解放</p>
+                                        @endif
+                                    @endif
+                                @elseif ($latest_content[0]->content_id < $organization->content_id && $users[0]->user_status == '0' && $organization->content_lock == 1)
+                                    <p class="red">有料会員しか視聴できません</p>
+                                @elseif ($latest_content[0]->content_id < $organization->content_id && $users[0]->user_status != '1')
+                                    <p class="red">前の動画を受講済にしてください</p>
+                                @elseif ($latest_content[0]->content_id < $organization->content_id && $users[0]->user_status == '1')
+                                    <p class="red">前の動画を受講済みにして下さい</p>
+                                @endif
                             </div>
                         </div>
                     </div>

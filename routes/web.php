@@ -96,3 +96,5 @@ Route::get('pickup', 'ContentsController@index')->middleware('user_id_auth');
 
 // 動画視聴(ajax送信)
 Route::post('viewed_video', 'VideoController@viewed_video');
+// 動画視聴時間の更新(ajax送信)
+Route::post('add_min', 'VideoController@add_min');
