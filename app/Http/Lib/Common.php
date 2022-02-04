@@ -347,7 +347,8 @@ class Common
      */
     public function get_mix_user_info()
     {
-        $sql = "select * from users order by rand() limit 1000";
+        $user_id = self::get_session_user_id();
+        $sql = "select * from users where user_id != $user_id order by rand() limit 1000";
         return DB::select($sql);
     }
 

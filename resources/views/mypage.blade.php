@@ -176,12 +176,20 @@
                                 </span>
                             </p>
                             <p class="profile-job m-b10">{{$users[0]->user_job}}</p>
-                            <p class="profile-inst m-b20">Instagram：<span>@</span>{{$users[0]->user_inst}}</p>
+                            <p class="profile-inst m-b20">Instagram：
+                                @if ($users[0]->user_inst != "")
+                                    <span>@</span>{{$users[0]->user_inst}}
+                                @else
+                                    未設定
+                                @endif
+                            </p>
                         </div>
 
-                        <div class="profile-inst-icon">
-                            <a href="https://www.instagram.com/{{$users[0]->user_inst}}/" target="_blank" rel="noopener noreferrer" ><i class="fab fa-instagram"></i></a>
-                        </div>
+                        @if ($users[0]->user_inst != "")
+                            <div class="profile-inst-icon">
+                                <a href="https://www.instagram.com/{{$users[0]->user_inst}}/" target="_blank" rel="noopener noreferrer" ><i class="fab fa-instagram"></i></a>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="profile-text m-b40">
