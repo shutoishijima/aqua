@@ -35,42 +35,78 @@
                     <img src={{ asset('storage' .'/img/' .$users[0]->user_img) }} alt="プロフィール写真" />
                 @endif
 
-                <div class="badge flex align-center flex-between">
+                <div class="badge flex flex-between">
                     <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
+                        @foreach ($amo as $amount)
+                            @if ($amount->content_category == '組織・リーダーシップ')
+                                @if ($amount->cnt == count($c1_viewed_count))
+                                    <img src={{ asset('img/complete_badge.png') }} alt="組織・リーダーシップ"/>
+                                @else
+                                    <img src={{ asset('img/badge.png') }} alt="組織・リーダーシップ"/>
+                                @endif
+                            @endif
+                        @endforeach
                         <p>組織<br>リーダーシップ</p>
                     </div>
                     <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
+                        @foreach ($amo as $amount)
+                            @if ($amount->content_category == '思考')
+                                @if ($amount->cnt == count($c2_viewed_count))
+                                    <img src={{ asset('img/complete_badge.png') }} alt="思考"/>
+                                @else
+                                    <img src={{ asset('img/badge.png') }} alt="思考"/>
+                                @endif
+                            @endif
+                        @endforeach
+                        <p class="m-t10">思考</p>
                     </div>
                     <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
+                        @foreach ($amo as $amount)
+                            @if ($amount->content_category == '戦略・マーケティング')
+                                @if ($amount->cnt == count($c3_viewed_count))
+                                    <img src={{ asset('img/complete_badge.png') }} alt="戦略・マーケティング"/>
+                                @else
+                                    <img src={{ asset('img/badge.png') }} alt="戦略・マーケティング"/>
+                                @endif
+                            @endif
+                        @endforeach
+                        <p>戦略<br>マーケティング</p>
                     </div>
                     <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
+                        @foreach ($amo as $amount)
+                            @if ($amount->content_category == '会計・財務')
+                                @if ($amount->cnt == count($c4_viewed_count))
+                                    <img src={{ asset('img/complete_badge.png') }} alt="会計・財務"/>
+                                @else
+                                    <img src={{ asset('img/badge.png') }} alt="会計・財務"/>
+                                @endif
+                            @endif
+                        @endforeach
+                        <p>会計・財務</p>
                     </div>
                     <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
+                        @foreach ($amo as $amount)
+                            @if ($amount->content_category == 'キャリア・志')
+                                @if ($amount->cnt == count($c5_viewed_count))
+                                    <img src={{ asset('img/complete_badge.png') }} alt="キャリア・志"/>
+                                @else
+                                    <img src={{ asset('img/badge.png') }} alt="キャリア・志"/>
+                                @endif
+                            @endif
+                        @endforeach
+                        <p>キャリア・志</p>
                     </div>
                     <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
-                    </div>
-                    <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
-                    </div>
-                    <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
-                    </div>
-                    <div class="c-badge">
-                        <img src={{ asset('img/badge.png') }} alt="組織リーダーシップ"/>
-                        <p>組織<br>リーダーシップ</p>
+                        @foreach ($amo as $amount)
+                            @if ($amount->content_category == '変革')
+                                @if ($amount->cnt == count($c6_viewed_count))
+                                    <img src={{ asset('img/complete_badge.png') }} alt="変革"/>
+                                @else
+                                    <img src={{ asset('img/badge.png') }} alt="変革"/>
+                                @endif
+                            @endif
+                        @endforeach
+                        <p>変革</p>
                     </div>
                 </div>
 
