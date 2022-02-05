@@ -110,10 +110,10 @@
                                             $hour_diff = $time_diff / 60 / 60;
                                         @endphp
 
-                                        @if (round((24 - $hour_diff), 1) > 0)
+                                        @if (round(($hour_diff), 1) > 0)
                                             <p class="red">あと
                                                 @php
-                                                    echo(round((24 - $hour_diff), 1));
+                                                    echo(round(($hour_diff), 1));
                                                 @endphp
                                             時間後に解放</p>
                                         @endif

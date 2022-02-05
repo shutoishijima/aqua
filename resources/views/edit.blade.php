@@ -170,7 +170,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-text profile-form">
                     <h5 class="m-b10">ひとこと</h5>
-                    <textarea name='user_text' value="{{ old('user_text') }}" placeholder="{{$users[0]->user_text}}"></textarea>
+                    <textarea name='user_text' value="{{ old('user_text') }}" placeholder="{{$users[0]->user_text}}">{{$users[0]->user_text}}</textarea>
                 </div>
                 <p class="bold right m-b20 profile-com">※全角100文字以内</p>
                 @if($errors->has('user_text'))
