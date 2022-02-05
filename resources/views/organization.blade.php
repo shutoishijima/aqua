@@ -110,7 +110,7 @@
                                             $hour_diff = $time_diff / 60 / 60;
                                         @endphp
 
-                                        @if (round(($hour_diff), 1) > 0)
+                                        @if (round((0.01 - $hour_diff), 1) > 0)
                                             <p class="red">あと
                                                 @php
                                                     echo(round(($hour_diff), 1));
