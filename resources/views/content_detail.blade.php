@@ -74,11 +74,7 @@
                             }
 
                             // 最新の視聴コンテンツを見た日から１日以上経っているか
-                            // $limit_day = date('Y-m-d H:i:s', strtotime('-1 day'));
-
-                            // testver
-                            $limit_day = date('Y-m-d H:i:s', strtotime('-1 min'));
-
+                            $limit_day = date('Y-m-d H:i:s', strtotime('-1 day'));
                             if ($latest_content[0]->view_date >= $limit_day){
                                 $video_flag = false;
                             }

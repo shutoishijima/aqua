@@ -35,7 +35,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:chatdelete')->yearly();
 
         // 毎月ごと
-        $schedule->command('command:studymindelete')->everyMinute();
+        $schedule->command('command:studymindelete')->monthly();
     }
 
     /**
